@@ -83,7 +83,7 @@ while true; do
     cd $ROOT || exit
     git clone https://github.com/aoi-bot/Aoi.git
     cd Aoi || exit
-    git checkout develop
+    git checkout master
     python3.8 -m pip install --user virtualenv
     echo "  Creating virtualenv"
     python3.8 -m venv venv > /dev/null 2>&1;
