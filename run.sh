@@ -22,23 +22,7 @@ while true; do
       echo "  git found at $(which git)"
     else
       echo "  git not found, attempting to install"
-      if command -v apt > /dev/null 2>&1; then
-        echo "  apt distribution found - attempting to install git"
-        echo "  This may ask for your password"
-        sudo apt install git
-      elif command -v yum > /dev/null 2>&1; then
-        echo "  yum distribution found - attempting to install git"
-        echo "  This may ask for your password"
-        sudo yum install git
-      elif command -v dnf > /dev/null 2>&1; then
-        echo "  dnf distribution found - attempting to install git"
-        echo "  This may ask for your password"
-        sudo dnf install git
-      else
-        echo "  No supported package manage found, install git via your package manager"
-        echo "  Exiting Aoi Updater"
-        exit
-      fi
+      sudo apt install git
       if command -v which git > /dev/null 2>&1; then
         echo "  git found at $(which git)"
       else
@@ -52,23 +36,11 @@ while true; do
       echo "  python3.8 found at $(which python3.8)"
     else
       echo "  python3.8 not found, attempting to install"
-      if command -v apt > /dev/null 2>&1; then
-        echo "  apt distribution found - attempting to install python3.8"
-        echo "  This may ask for your password"
-        sudo apt install python3.8
-      elif command -v yum > /dev/null 2>&1; then
-        echo "  yum distribution found - attempting to install python3.8"
-        echo "  This may ask for your password"
-        sudo yum install python3.8
-      elif command -v dnf > /dev/null 2>&1; then
-        echo "  dnf distribution found - attempting to install python3.8"
-        echo "  This may ask for your password"
-        sudo dnf install python3.8
-      else
-        echo "  No supported package manage found, install python via your package manager"
-        echo "  Exiting Aoi Updater"
-        exit
-      fi
+      sudo apt update
+      sudo apt install software-properties-common
+      sudo add-apt-repository ppa:deadsnakes/ppa
+      sudo apt update
+      sudo apt install python3.8
       if command -v which python3.8 > /dev/null 2>&1; then
         echo "  python3.8 found at $(which python3.8)"
       else
@@ -91,14 +63,12 @@ while true; do
     echo "  Installing requirements.txt"
     python3.8 -m pip install -Ur requirements.txt
     FOLDER=`mcookie`
+    mkdir /tmp/$FOLDER
     pushd /tmp/$FOLDER
     git clone https://github.com/aoi-bot/discord.py
     cd discord.py
     python3.8 setup.py install
     popd
-    if command -v which notify-send /dev/null 2>&1; then
-        notify-send "Aoi prerequisites installed" /dev/null 2>&1
-    fi
     cd $ROOT || exit
   elif [[ $CHOICE -eq '2' ]]; then
     cd $ROOT/Aoi || exit
