@@ -1,5 +1,5 @@
 reset
-ROOT="~"
+ROOT="$HOME"
 while true; do
   cd $ROOT || exit
   echo -n "
