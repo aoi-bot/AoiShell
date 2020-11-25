@@ -1,5 +1,5 @@
 reset
-ROOT="/tmp"
+ROOT="~"
 while true; do
   cd $ROOT || exit
   echo -n "
