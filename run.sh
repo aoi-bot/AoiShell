@@ -48,53 +48,53 @@ while true; do
       fi
     fi
     # check python version
-    if command -v which python3 > /dev/null 2>&1; then
-      echo "  python3 found at $(which python3)"
+    if command -v which python3.8 > /dev/null 2>&1; then
+      echo "  python3.8 found at $(which python3.8)"
     else
-      echo "  python3 not found, attempting to install"
+      echo "  python3.8 not found, attempting to install"
       if command -v apt > /dev/null 2>&1; then
-        echo "  apt distribution found - attempting to install python3"
+        echo "  apt distribution found - attempting to install python3.8"
         echo "  This may ask for your password"
-        sudo apt install python3
+        sudo apt install python3.8
       elif command -v yum > /dev/null 2>&1; then
-        echo "  yum distribution found - attempting to install python3"
+        echo "  yum distribution found - attempting to install python3.8"
         echo "  This may ask for your password"
-        sudo yum install python3
+        sudo yum install python3.8
       elif command -v dnf > /dev/null 2>&1; then
-        echo "  dnf distribution found - attempting to install python3"
+        echo "  dnf distribution found - attempting to install python3.8"
         echo "  This may ask for your password"
-        sudo dnf install python3
+        sudo dnf install python3.8
       else
         echo "  No supported package manage found, install python via your package manager"
         echo "  Exiting Aoi Updater"
         exit
       fi
-      if command -v which python3 > /dev/null 2>&1; then
-        echo "  python3 found at $(which python3)"
+      if command -v which python3.8 > /dev/null 2>&1; then
+        echo "  python3.8 found at $(which python3.8)"
       else
-        echo "  Installing python3 seemed to be unsuccessful, install python via your package manager"
+        echo "  Installing python3.8 seemed to be unsuccessful, install python via your package manager"
         echo "  Exiting Aoi Updater"
         exit
       fi
     fi
     if command -v which apt > /dev/null 2>&1; then
-      sudo apt install python3-venv
+      sudo apt install python3.8-venv
     fi
     cd $ROOT || exit
     git clone https://github.com/aoi-bot/Aoi.git
     cd Aoi || exit
     git checkout develop
-    python3 -m pip install --user virtualenv
+    python3.8 -m pip install --user virtualenv
     echo "  Creating virtualenv"
-    python3 -m venv venv > /dev/null 2>&1;
+    python3.8 -m venv venv > /dev/null 2>&1;
     source venv/bin/activate
     echo "  Installing requirements.txt"
-    python3 -m pip install -Ur requirements.txt
+    python3.8 -m pip install -Ur requirements.txt
     FOLDER=`mcookie`
     pushd /tmp/$FOLDER
     git clone https://github.com/aoi-bot/discord.py
     cd discord.py
-    python3 setup.py install
+    python3.8 setup.py install
     popd
     if command -v which notify-send /dev/null 2>&1; then
         notify-send "Aoi prerequisites installed" /dev/null 2>&1
@@ -106,7 +106,7 @@ while true; do
     mkdir assets/frames -p
     source venv/bin/activate
     while :; do
-      python3 main.py
+      python3.8 main.py
       if [[ $? != 0 ]]; then
         break
       fi
@@ -118,7 +118,7 @@ while true; do
     git pull
     source venv/bin/activate
     while :; do
-      python3 main.py
+      python3.8 main.py
       if [[ $? != 0 ]]; then
         break
       fi
@@ -128,7 +128,7 @@ while true; do
     mkdir assets -p
     mkdir assets/frames -p
     source venv/bin/activate
-    python3 main.py
+    python3.8 main.py
     if [[ $? != 0 ]]; then
       continue
     fi
