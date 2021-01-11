@@ -105,6 +105,7 @@ while true; do
   elif [[ $CHOICE -eq '5' ]]; then
     cd $ROOT/Aoi || exit
     git pull
+    pip install -r requirements.txt -U
   elif [[ $CHOICE -eq '6' ]]; then
     cd $ROOT/Aoi || exit
     echo "Input discord token"
